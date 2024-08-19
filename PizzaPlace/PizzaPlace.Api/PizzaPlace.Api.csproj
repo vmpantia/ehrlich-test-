@@ -15,10 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <ProjectReference Include="..\PizzaPlace.Core\PizzaPlace.Core.csproj" />
     <ProjectReference Include="..\PizzaPlace.Infrastructure\PizzaPlace.Infrastructure.csproj" />
   </ItemGroup>
 

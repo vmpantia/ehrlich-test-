@@ -27,19 +27,19 @@ namespace PizzaPlace.Core.Services
                 {
                     case SyncAction.Create:
                         {
-                            var toBeCreate = newEntities.First(data => data.Equals(sync.Id));
+                            var toBeCreate = newEntities.First(data => data.Id!.Equals(sync.Id));
                             await _uow.Repository.CreateAsync(toBeCreate, token, false);
                             break;
                         }
                     case SyncAction.Update:
                         {
-                            var toBeUpdate = newEntities.First(data => data.Equals(sync.Id));
+                            var toBeUpdate = newEntities.First(data => data.Id!.Equals(sync.Id));
                             await _uow.Repository.UpdateAsync(toBeUpdate, token, false);
                             break;
                         }
                     case SyncAction.Delete:
                         {
-                            var toBeDelete = currentEntities.First(data => data.Equals(sync.Id));
+                            var toBeDelete = currentEntities.First(data => data.Id!.Equals(sync.Id));
                             await _uow.Repository.DeleteAsync(toBeDelete, token, false);
                             break;
                         }

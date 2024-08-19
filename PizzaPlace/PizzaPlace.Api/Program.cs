@@ -1,9 +1,11 @@
 using PizzaPlace.Infrastructure.Extensions;
+using PizzaPlace.Core.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddInfrastructure(builder.Configuration);
+builder.Services.AddCore();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
