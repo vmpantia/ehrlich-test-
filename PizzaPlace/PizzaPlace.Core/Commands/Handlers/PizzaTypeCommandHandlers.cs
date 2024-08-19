@@ -19,7 +19,7 @@ namespace PizzaPlace.Core.Commands.Handlers
         public async Task<string> Handle(ImportPizzaTypesByCSVFileCommand request, CancellationToken cancellationToken)
         {
             // Convert csv file to list of pizze type
-            var pizzaTypes = await request.CsvFile.ConvertCsvToPizzaTypesAsync();
+            var pizzaTypes = await request.CsvFile.ConvertCsvToObjectsAsync<PizzaType>();
 
             // Process data synchronization to database
             await _synchronization.DoSyncAsync(pizzaTypes, cancellationToken);

@@ -7,12 +7,19 @@ namespace PizzaPlace.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class PizzaController : ControllerBase
+    public class PizzasController : ControllerBase
     {
         private readonly IMediator _mediator;
-        public PizzaController(IMediator mediator)
+        public PizzasController(IMediator mediator)
         {
             _mediator = mediator;
+        }
+
+        [HttpPost("import")]
+        public async Task<IActionResult> ImportPizzas([FromForm] ImportCsvFileDto request)
+        {
+            var result = await _mediator.Send(new ImportPizzasByCSVFileCommand(request));
+            return Ok(result);
         }
 
         [HttpPost("types/import")]

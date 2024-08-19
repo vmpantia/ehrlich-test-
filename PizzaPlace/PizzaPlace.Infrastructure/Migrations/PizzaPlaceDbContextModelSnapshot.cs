@@ -24,10 +24,7 @@ namespace PizzaPlace.Infrastructure.Migrations
             modelBuilder.Entity("PizzaPlace.Domain.Models.Entities.Order", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Date")
                         .IsRequired()
@@ -45,10 +42,7 @@ namespace PizzaPlace.Infrastructure.Migrations
             modelBuilder.Entity("PizzaPlace.Domain.Models.Entities.OrderDetail", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("OrderId")
                         .HasColumnType("int");

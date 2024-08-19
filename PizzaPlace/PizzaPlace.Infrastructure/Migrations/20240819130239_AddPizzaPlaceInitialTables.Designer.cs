@@ -11,8 +11,8 @@ using PizzaPlace.Infrastructure.Databases.Contexts;
 namespace PizzaPlace.Infrastructure.Migrations
 {
     [DbContext(typeof(PizzaPlaceDbContext))]
-    [Migration("20240819075752_AddPizzaPlaceTables")]
-    partial class AddPizzaPlaceTables
+    [Migration("20240819130239_AddPizzaPlaceInitialTables")]
+    partial class AddPizzaPlaceInitialTables
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -27,10 +27,7 @@ namespace PizzaPlace.Infrastructure.Migrations
             modelBuilder.Entity("PizzaPlace.Domain.Models.Entities.Order", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Date")
                         .IsRequired()
@@ -48,10 +45,7 @@ namespace PizzaPlace.Infrastructure.Migrations
             modelBuilder.Entity("PizzaPlace.Domain.Models.Entities.OrderDetail", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("OrderId")
                         .HasColumnType("int");
