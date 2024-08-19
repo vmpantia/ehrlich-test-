@@ -11,6 +11,7 @@ namespace PizzaPlace.Domain.Models.Entities
         public required string Size { get; set; }
         public required decimal Price { get; set; }
 
-        public virtual PizzaType PizzaType { get; set; }
+        public required virtual PizzaType PizzaType { get; set; }
+        public required virtual ICollection<OrderDetail> OrderDetails { get; set; }
     }
 }

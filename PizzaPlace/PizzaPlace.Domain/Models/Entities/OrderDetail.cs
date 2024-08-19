@@ -11,6 +11,7 @@ namespace PizzaPlace.Domain.Models.Entities
         public required string PizzaId { get; set; } 
         public required int Quantity { get; set; } 
 
-        public virtual Order Order { get; set; }
+        public required virtual Order Order { get; set; }
+        public required virtual Pizza Pizza { get; set; }
     }
 }

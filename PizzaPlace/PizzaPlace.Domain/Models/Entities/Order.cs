@@ -10,6 +10,6 @@ namespace PizzaPlace.Domain.Models.Entities
         public required string Date { get; set; }
         public required string Time { get; set; }
 
-        public virtual ICollection<OrderDetail> Details { get; set; }
+        public required virtual ICollection<OrderDetail> OrderDetails { get; set; }
     }
 }

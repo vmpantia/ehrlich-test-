@@ -11,6 +11,6 @@ namespace PizzaPlace.Domain.Models.Entities
         public required string Category { get; set; }
         public required string Ingredients { get; set; }
 
-        public virtual ICollection<PizzaType> Pizzas { get; set; }
+        public virtual ICollection<Pizza> Pizzas { get; set; }
     }
 }
