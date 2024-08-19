@@ -13,18 +13,18 @@ namespace PizzaPlace.Api.Controllers
 
         [HttpPost("import/orders")]
         public async Task<IActionResult> ImpordOrders([FromForm] ImportCsvFileDto request) =>
-            await HandleRequestAsync(new ImportOrdersByCSVFileCommand(request));
+            await HandleRequestAsync<ImportOrdersByCSVFileCommand, string>(new ImportOrdersByCSVFileCommand(request));
 
         [HttpPost("import/order-details")]
         public async Task<IActionResult> ImpordOrderDetails([FromForm] ImportCsvFileDto request) =>
-            await HandleRequestAsync(new ImportOrderDetailsByCSVFileCommand(request));
+            await HandleRequestAsync<ImportOrderDetailsByCSVFileCommand, string>(new ImportOrderDetailsByCSVFileCommand(request));
 
         [HttpPost(template: "import/pizzas")]
         public async Task<IActionResult> ImportPizzas([FromForm] ImportCsvFileDto request) =>
-            await HandleRequestAsync(new ImportPizzasByCSVFileCommand(request));
+            await HandleRequestAsync<ImportPizzasByCSVFileCommand, string>(new ImportPizzasByCSVFileCommand(request));
 
         [HttpPost("import/pizza-types")]
         public async Task<IActionResult> ImportPizzaTypes([FromForm] ImportCsvFileDto request) =>
-            await HandleRequestAsync(new ImportPizzaTypesByCSVFileCommand(request));
+            await HandleRequestAsync<ImportPizzaTypesByCSVFileCommand, string>(new ImportPizzaTypesByCSVFileCommand(request));
     }
 }

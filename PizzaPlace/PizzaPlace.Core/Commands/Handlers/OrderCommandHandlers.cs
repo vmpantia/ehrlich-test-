@@ -8,13 +8,13 @@ using PizzaPlace.Domain.Results;
 namespace PizzaPlace.Core.Commands.Handlers
 {
     public class OrderCommandHandlers :
-        IRequestHandler<ImportOrdersByCSVFileCommand, Result>
+        IRequestHandler<ImportOrdersByCSVFileCommand, Result<string>>
     {
         private readonly ISynchronizationService<Order, int> _synchronization;
         public OrderCommandHandlers(ISynchronizationService<Order, int> synchronization) =>
             _synchronization = synchronization;
 
-        public async Task<Result> Handle(ImportOrdersByCSVFileCommand request, CancellationToken cancellationToken)
+        public async Task<Result<string>> Handle(ImportOrdersByCSVFileCommand request, CancellationToken cancellationToken)
         {
             // Convert csv file to list of order
             var orders = await request.CsvFile.ConvertCsvToObjectsAsync<Order>();
@@ -22,7 +22,7 @@ namespace PizzaPlace.Core.Commands.Handlers
             // Process data synchronization to database
             await _synchronization.DoSyncAsync(orders, cancellationToken);
 
-            return Result.Success("Orders imported successfully to the database.");
+            return Result<string>.Success("Orders imported successfully to the database.");
         }
     }
 }

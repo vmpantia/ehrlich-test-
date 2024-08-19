@@ -1,17 +1,17 @@
 ﻿namespace PizzaPlace.Domain.Results
 {
-    public class Result
+    public class Result<TResponse>
     {
         // Result without any data or error
         private Result()
         {
             IsSuccess = true;
-            Data = null;
+            Data = default;
             Error = null;
         }
 
         // Result with data
-        private Result(object data)
+        private Result(TResponse data)
         {
             IsSuccess = true;
             Data = data;
@@ -27,12 +27,12 @@
         }
 
         public bool IsSuccess { get; }
-        public object? Data { get; }
+        public TResponse? Data { get; }
         public Error? Error { get; }
 
-        public static Result Success() => new();
-        public static Result Success<TData>(TData data) where TData : notnull => new(data);
-        public static Result Failure(Error error) => new(error);
+        public static Result<TResponse> Success() => new();
+        public static Result<TResponse> Success(TResponse data) => new(data);
+        public static Result<TResponse> Failure(Error error) => new(error);
     }
 
     public sealed record Error(string Code, object Description) { }

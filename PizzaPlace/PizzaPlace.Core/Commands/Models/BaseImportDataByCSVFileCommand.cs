@@ -5,7 +5,7 @@ using PizzaPlace.Domain.Results;
 
 namespace PizzaPlace.Core.Commands.Models
 {
-    public class BaseImportDataByCSVFileCommand : IRequest<Result>
+    public class BaseImportDataByCSVFileCommand : IRequest<Result<string>>
     {
         public BaseImportDataByCSVFileCommand(ImportCsvFileDto dto)
         {

@@ -13,7 +13,7 @@ namespace PizzaPlace.Api.Controllers
             _mediator = mediator;
         }
 
-        protected async Task<IActionResult> HandleRequestAsync<TRequest>(TRequest request)
+        protected async Task<IActionResult> HandleRequestAsync<TRequest, TResponse>(TRequest request)
         {
             try
             {
@@ -24,7 +24,7 @@ namespace PizzaPlace.Api.Controllers
                 var response = await _mediator.Send(request);
 
                 // Check if the response is a Result
-                if (!(response is Result result)) throw new Exception("Invalid result for a certain request.");
+                if (!(response is Result<TResponse> result)) throw new Exception("Invalid result for a certain request.");
 
                 return result switch
                 {
@@ -34,7 +34,7 @@ namespace PizzaPlace.Api.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest(Result.Failure(CommonError.Unexpected<TRequest>(ex)));
+                return BadRequest(Result<TResponse>.Failure(CommonError.Unexpected<TRequest>(ex)));
             }
         }
     }
