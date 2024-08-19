@@ -1,4 +1,5 @@
-﻿using PizzaPlace.Domain.Contractors.Models.Entities;
+﻿using AutoMapper;
+using PizzaPlace.Domain.Contractors.Models.Entities;
 using PizzaPlace.Domain.Contractors.Repositories;
 using PizzaPlace.Domain.Contractors.Services;
 using PizzaPlace.Domain.Models.Enums;
@@ -9,7 +10,12 @@ namespace PizzaPlace.Core.Services
     public class SynchronizationService<TEntity, TKeyProperty> : ISynchronizationService<TEntity, TKeyProperty> where TEntity : class, IKeyEntity<TKeyProperty>
     {
         private readonly IUnitOfWork<TEntity> _uow;
-        public SynchronizationService(IUnitOfWork<TEntity> uow) => _uow = uow;
+        private readonly IMapper _mapper;
+        public SynchronizationService(IUnitOfWork<TEntity> uow, IMapper mapper)
+        {
+            _uow = uow;
+            _mapper = mapper;
+        }
 
         public async Task DoSyncAsync(IEnumerable<TEntity> entities, CancellationToken token)
         {
@@ -33,7 +39,9 @@ namespace PizzaPlace.Core.Services
                         }
                     case SyncAction.Update:
                         {
-                            var toBeUpdate = newEntities.First(data => data.Id!.Equals(sync.Id));
+                            var currentEntity = currentEntities.First(data => data.Id!.Equals(sync.Id));
+                            var newEntity = newEntities.First(data => data.Id!.Equals(sync.Id));
+                            var toBeUpdate = _mapper.Map(newEntity, currentEntity);
                             await _uow.Repository.UpdateAsync(toBeUpdate, token, false);
                             break;
                         }

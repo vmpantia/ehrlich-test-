@@ -9,10 +9,14 @@ namespace PizzaPlace.Core.Extensions
     {
         public static void AddCore(this IServiceCollection services) =>
             services.AddServices()
+                    .AddAutoMapper()
                     .AddMediatR();
 
         private static IServiceCollection AddServices(this IServiceCollection services) =>
             services.AddScoped(typeof(ISynchronizationService<,>), typeof(SynchronizationService<,>));
+
+        private static IServiceCollection AddAutoMapper(this IServiceCollection services) =>
+            services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
         private static IServiceCollection AddMediatR(this IServiceCollection services) =>
             services.AddMediatR(config =>
