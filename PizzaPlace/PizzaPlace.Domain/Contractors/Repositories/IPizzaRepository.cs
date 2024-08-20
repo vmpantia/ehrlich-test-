@@ -2,7 +2,7 @@
 
 namespace PizzaPlace.Domain.Contractors.Repositories
 {
-    public interface IPizzaRepository
+    public interface IPizzaRepository : IBaseRepository<Pizza>
     {
         Task<IEnumerable<Pizza>> GetPizzasAsync();
         Task<Pizza?> GetPizzaByIdAsync(string id);

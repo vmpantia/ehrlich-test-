@@ -1,7 +1,8 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using PizzaPlace.Core.Queries.Models;
 using PizzaPlace.Core.Queries.Models.Pizza;
+using PizzaPlace.Core.Queries.Models;
+using PizzaPlace.Core.Queries.Models.Sales;
 using PizzaPlace.Domain.Models.Dtos;
 
 namespace PizzaPlace.Api.Controllers
