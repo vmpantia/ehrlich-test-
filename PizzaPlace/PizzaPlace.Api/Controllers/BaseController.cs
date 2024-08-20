@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using PizzaPlace.Domain.Models.Enums;
 using PizzaPlace.Domain.Results;
 using PizzaPlace.Domain.Results.Errors;
 
@@ -28,6 +29,7 @@ namespace PizzaPlace.Api.Controllers
 
                 return result switch
                 {
+                    { IsSuccess: false, Error: var error } when error!.Type == ErrorType.NotFound => NotFound(result),
                     { IsSuccess: false } => BadRequest(result),
                     _ => Ok(result)
                 };

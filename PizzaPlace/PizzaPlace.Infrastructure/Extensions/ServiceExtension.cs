@@ -17,6 +17,9 @@ namespace PizzaPlace.Infrastructure.Extensions
             services.AddDbContext<PizzaPlaceDbContext>(opt => opt.UseSqlServer(configuration.GetConnectionString("MigrationDb")));
 
         private static IServiceCollection AddRepositories(this IServiceCollection services) =>
-            services.AddScoped(typeof(IUnitOfWork<>), typeof(UnitOfWork<>));
+            services.AddScoped(typeof(IUnitOfWork<>), typeof(UnitOfWork<>))
+                    .AddScoped<IPizzaRepository, PizzaRepository>()
+                    .AddScoped<IPizzaTypeRepository, PizzaTypeRepository>()
+                    .AddScoped<IOrderRepository, OrderRepository>();
     }
 }

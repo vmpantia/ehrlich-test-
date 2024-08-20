@@ -9,7 +9,7 @@ namespace PizzaPlace.Domain.Models.Entities
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public required int Id { get; set; }
-        public required string Date { get; set; }
+        public required DateTime Date { get; set; }
         public required string Time { get; set; }
 
         public virtual ICollection<OrderDetail> OrderDetails { get; set; }
@@ -26,7 +26,7 @@ namespace PizzaPlace.Domain.Models.Entities
             return new Order
             {
                 Id = int.Parse(values[0]),
-                Date = values[1],
+                Date = DateTime.Parse(values[1]).Date,
                 Time = values[2],
             };
         }

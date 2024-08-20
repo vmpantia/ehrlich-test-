@@ -1,4 +1,6 @@
-﻿namespace PizzaPlace.Domain.Results
+﻿using PizzaPlace.Domain.Models.Enums;
+
+namespace PizzaPlace.Domain.Results
 {
     public class Result<TResponse>
     {
@@ -35,5 +37,5 @@
         public static Result<TResponse> Failure(Error error) => new(error);
     }
 
-    public sealed record Error(string Code, object Description) { }
+    public sealed record Error(ErrorType Type, string Code, object Description) { }
 }
