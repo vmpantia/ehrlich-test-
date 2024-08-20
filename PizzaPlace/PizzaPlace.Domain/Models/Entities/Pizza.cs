@@ -12,5 +12,24 @@ namespace PizzaPlace.Domain.Models.Entities
         public required decimal Price { get; set; }
 
         public virtual PizzaType PizzaType { get; set; }
+        public virtual ICollection<OrderDetail> OrderDetails { get; set; }
+
+        public static Pizza GenerateFromCSVValue(string? line)
+        {
+            // Get values by separating it on comma
+            var values = line?.Split(',') ?? [];
+
+            // Check if the values length is valid
+            if (values.Length <= 0)
+                throw new ArgumentException("Invalid Pizza properties from the CSV.");
+
+            return new Pizza
+            {
+                Id = values[0],
+                PizzaTypeId = values[1],
+                Size = values[2],
+                Price = decimal.Parse(values[3]),
+            };
+        }
     }
 }

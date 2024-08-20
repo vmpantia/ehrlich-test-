@@ -15,4 +15,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\PizzaPlace.Domain\PizzaPlace.Domain.csproj" />
+  </ItemGroup>
+
 </Project>
